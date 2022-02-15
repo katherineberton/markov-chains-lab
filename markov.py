@@ -88,25 +88,29 @@ def make_chains(text_string):
 def make_text(chains):
     """Return text from chains."""
 
+    #blank list to receive the words from the list
     words = []
 
-
-    #while loop until error saying last tuple of (last word, "") doesn't exist (whatever that looks like not sure right now)
-
+    #starts with a random choice of the keys in dictionary chains being passed in
     initial_key = choice(list(chains))
-    words.append(initial_key[0]) #add first thing in key to words list
-    words.append(initial_key[1]) #add second thing in key to words list
 
+    words.append(initial_key[0]) #add first thing in the retrieved key to words list
+    words.append(initial_key[1]) #add second thing in the retrieved key to words list
+
+    #declare current_key variable for use in the loop
     current_key = initial_key
 
     #leave the loop when we have reached the end of the text, or in other words, when the value of the tuple is ""
     while chains[current_key] != [""]:
 
-        new_value = choice(chains[current_key]) #choose random value from current key
+        #choose random value from chains at current key    
+        new_value = choice(chains[current_key])
 
-        words.append(new_value) #append list with retrieved value
+        #appends words list with the retrieved value
+        words.append(new_value)
 
-        current_key = (current_key[1], new_value) #update current key to drop first item and add the previously added value
+        #updates current_key to drop first item and add the previously retrieved value
+        current_key = (current_key[1], new_value)
 
     return ' '.join(words)
 
