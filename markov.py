@@ -10,6 +10,7 @@ def open_and_read_file(file_path):
     the file's contents as one string of text.
     """
 
+    #use .read() function to turn contents of the file into a single list
     contents = open(file_path).read()
     
     return contents
@@ -41,8 +42,8 @@ def make_chains(text_string):
     """
 
     chains = {}
-    #               create the list of single words from the file
 
+    #               create the list with elements single words from the file being imported
 
     #rstrip the file's text and replace line breaks with spaces for later use of the .split(" ") function
     formatted = text_string.rstrip().replace("\n", " ")
@@ -50,16 +51,16 @@ def make_chains(text_string):
     #then use .split(" ") to turn it into a list
     list_of_words = formatted.split(" ")
     
-    #                populate the dictionary
-    
 
-    #for loop over a range of the list to create dict keys, range (not inclusive) to accommodate the final tuple which starts at index len(list_of_words) - 2
+    #                populate the dictionary
+
+    #for loop over a range of the list to create dict keys, range to accommodate the final tuple which starts at index len(list_of_words) - 2
     for i in range(0,(len(list_of_words)-1)):
 
         #create variable named tup equal to (word at index i, following word)
         tup = (list_of_words[i], list_of_words[i+1])
 
-        #if it is the last possible tuple in the list:
+        #if the resultant tup is the last possible tuple in the list:
         if i == len(list_of_words) - 2:
 
             #assign the value to a list containing empty string
@@ -69,7 +70,6 @@ def make_chains(text_string):
         else:
 
             #if the tuple is already a key in the dictionary:
-
             if tup in chains:
 
                 #append the value list with the word following the tuple
@@ -78,7 +78,7 @@ def make_chains(text_string):
             #otherwise, if it's not already in the list
             else:
 
-                #create new key value pair with tuple: a list containing the following word as its only element
+                #create new key value pair with key the tuple and value a list containing only one element: the word following the tuple in the list
                 chains[tup] = [list_of_words[i+2]]
     
 
